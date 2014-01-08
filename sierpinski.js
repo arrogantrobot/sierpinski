@@ -5,7 +5,7 @@ function sierpinski() {
   var numDots;
   var width;
   var height;
-  var triangle;
+  var vertices;
   var point;
   var timeBetweenDots = 100;
 
@@ -35,7 +35,7 @@ function sierpinski() {
 
   var alertPoints = function(vertex) {
     alert("Point: " + point.x.toString() +", "+ point.y.toString());
-    alert("Vertex: " + triangle[vertex].x.toString() +", "+ triangle[vertex].y.toString());
+    alert("Vertex: " + vertices[vertex].x.toString() +", "+ vertices[vertex].y.toString());
   }
 
   var iterate = function() {
@@ -48,8 +48,8 @@ function sierpinski() {
       vertex = "c";
     }
     //alertPoints(vertex);
-    point.x = Math.floor((point.x + triangle[vertex].x)/2);
-    point.y = Math.floor((point.y + triangle[vertex].y)/2);
+    point.x = Math.floor((point.x + vertices[vertex].x)/2);
+    point.y = Math.floor((point.y + vertices[vertex].y)/2);
     //alertPoints(vertex);
     drawPoint();
   }
@@ -59,21 +59,26 @@ function sierpinski() {
 
   }
 
+  var addVertex = function(name, x, y) {
+    vertices[name] = new Object();
+    vertices[name]['x'] = x;
+    vertices.a['y'] = y;
+  }
+
+  var setVertices = function(num) {
+    vertices = new Object();
+    if (num == 3) {
+      addVertex('a', 0, height); 
+      addVertex('b', Math.floor(width /2), 0); 
+      addVertex('c', width, height); 
+    }
+
+  }
+
   this.init = function(canvas) {
     canvasId = canvas;
     setCanvasId(canvasId);
-    triangle = new Object();
-    triangle['a'] = new Object();
-    triangle.a['x'] = 0;
-    triangle.a['y'] = height;
-    
-    triangle['b'] = new Object();
-    triangle.b['x'] = Math.floor(width / 2);
-    triangle.b['y'] = 0;
-
-    triangle['c'] = new Object();
-    triangle.c['x'] = width;
-    triangle.c['y'] = height;
+    setVertices(3);
 
     point = new Object();
     point['x'] = width /2;
