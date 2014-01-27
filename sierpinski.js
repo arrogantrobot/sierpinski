@@ -1,3 +1,20 @@
+/*  This demonstrates a method for generating a sierpinski triangle.
+ *  There are 3 points which form an equilateral triangle, vertex a, 
+ *  b, and c. A point is drawn at a random location inside the triangle.
+ *  Then one of the 3 vertices is selected at random, and second
+ *  point is drawn half way between the first randomly chosen point
+ *  and the vertex that was selected randomly. This process is 
+ *  repeated, using the last point drawn as the starting point, and 
+ *  a randomly selected vertex as the ending point. 
+ *
+ *  The shape that emerges from this stochastic process is a fractal.
+ *  It has self-similarity at an level of zoom. Each triangluar
+ *  region is composed of infinitely many smaller triangles. Since the
+ *  points drawn must have some 2 dimensional size to be visible, they
+ *  only approximate this object. So precision is limited first by 
+ *  the size of the pixels on the screen, then by the precision of the
+ *  floating point math of javascript.
+ */
 function sierpinski() {
   var canvasId;
   var canvas;
